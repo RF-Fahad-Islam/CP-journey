@@ -1,18 +1,20 @@
 import sys
-input = sys.stdin.readline
+from collections import Counter
+import itertools
+input = lambda: sys.stdin.readline().strip()
 test = int(input())
 
 for _ in range(test):
     n,k = list(map(int,input().split()))
     s = input()
-    freq = [0]*27
-    for i in range(len(s)):
-        freq[ord(s[i])-97]+=1
-    if (n-k)%2 == 0:
-        more_2_cnt = 0
-        for i in freq:
-            if i>= 2:
-                more_2_cnt+=1
+    scnt = Counter(s)
+    l = list(Counter(s).values())
+    odds = list(filter(lambda x:x%2!=0, l))
+    
+    if len(odds)>k+1:
+        print("NO")
+    else:
+        print("YES")
         
     
     
